@@ -10,12 +10,16 @@ class Solution:
                 parStack.append(p)
 
             else:
+                if not parStack:
+                    return False
                 oPar = parStack.pop()
 
                 if openDict[p] != oPar:
                     return False
 
-
+        if not parStack:
+            return True
+        return False
 g = Solution()
 
-print(g.isValid("(((())))"))
+print(g.isValid("[()]"))
