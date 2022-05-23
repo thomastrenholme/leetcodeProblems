@@ -1,38 +1,24 @@
+import copy
+
+
 class Solution:
-    def getRow(self, rowIndex: int) -> list[int]:
+    def rotate(self, matrix: list[list[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
         
-        oldRow = [1]
+        oldMatrix=copy.copy(matrix)
+        for i in range(0, len(matrix)):
 
+            for j in range(0, len(matrix)):
 
-        for x in range(1, rowIndex+1):
-            
-            newRow = [1]*(x+1)
+                print("i: " + str(i) + " j: " + str(j))
 
-            for newIdx in range(1, len(newRow)-1):
+                matrix[i][j] = oldMatrix[i][len(matrix[j]) -1 - j]
 
-                newRow[newIdx] = oldRow[newIdx -1] + oldRow[newIdx]
-            oldRow=newRow
+        print(str(matrix))
 
-        return oldRow
-
-
-    def generate(self, numRows: int) -> list[list[int]]:
-        
-
-        res = [[1]]
-
-
-        for x in range(1, numRows):
-            
-            newRow = [1]*(x+1)
-
-            for newIdx in range(1, len(newRow)-1):
-
-                newRow[newIdx] = res[x-1][newIdx -1] + res[x-1][newIdx]
-            res.append(newRow)
-
-        return res
 
 g = Solution()
 
-print(g.getRow(3))
+print (g.rotate([[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]))
