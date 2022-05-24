@@ -17,7 +17,6 @@ class Solution:
                 print("n: " + n + " n2: " + n2)
 
                 if idxCtr==len(num2):
-                    print("END OF WORD \n\n\n")
                     sum+= (int(n) * int(n2) + carry) * (10**tensPlaceCtr)
 
                 else:
@@ -31,11 +30,13 @@ class Solution:
                     sum+= tmpSum % 10  * (10**tensPlaceCtr)
                     tensPlaceCtr+=1
                     idxCtr+=1
+            print("Sum is "  + str(sum))
+            print("\n\nend\n\n")
 
 
                 
-                print("Sum is: " + str(sum))
-            
+                ##print("Sum is: " + str(sum))
+            carry = 0
             idxCtr=1
             nCtr+=1
             tensPlaceCtr= 0+nCtr
@@ -43,4 +44,4 @@ class Solution:
         return sum
 g = Solution()
 
-print(g.multiply("999", "999"))
+print(g.multiply("5678", "1234"))

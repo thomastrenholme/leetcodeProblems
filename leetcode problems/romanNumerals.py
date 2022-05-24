@@ -3,9 +3,17 @@ class Solution:
         
         total=0
         sCtr=0
-        while sCtr <= len(s)-1:
+        while sCtr < len(s)-1:
             addToTot=self.convert(s[sCtr])
-            if self.subtractConvert(s[]
+            if self.subtractConvert(s[sCtr]+s[sCtr+1]) is not "-1":
+                addToTot=self.subtractConvert(s[sCtr]+s[sCtr+1])
+                sCtr+=2
+                total+=addToTot
+                continue
+            sCtr+=1
+            total+=addToTot
+            
+
     
     def convert(self, s):
         if s=="M":

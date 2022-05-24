@@ -5,10 +5,11 @@ class Solution:
     def maxSubArray(self, nums: List[int]) -> int:
         
         
-        currSum=0
-        maxSum=0
+        currSum=maxSum=nums[0]
 
-        for n in nums:
+        for n in nums[1:]:
 
             currSum = max(n, n+currSum)
             maxSum = max(currSum, maxSum)
+        
+        return maxSum

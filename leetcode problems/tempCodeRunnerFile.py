@@ -1,24 +1,47 @@
-import copy
+from sqlite3 import TimestampFromTicks
+from tempfile import tempdir
 
 
 class Solution:
-    def rotate(self, matrix: list[list[int]]) -> None:
-        """
-        Do not return anything, modify matrix in-place instead.
-        """
+    def multiply(self, num1: str, num2: str) -> str:
         
-        oldMatrix=copy.copy(matrix)
-        for i in range(0, len(matrix)):
+        idxCtr=1
+        sum = 0
+        nCtr=0
+        tensPlaceCtr=0
+        carry = 0
+        for n in num1[::-1]:
 
-            for j in range(0, len(matrix)):
+            for n2 in num2[::-1]:
 
-                print("i: " + str(i) + " j: " + str(j))
+                print("n: " + n + " n2: " + n2)
 
-                matrix[i][j] = oldMatrix[i][len(matrix[j]) -1 - j]
+                if idxCtr==len(num2):
+                    sum+= (int(n) * int(n2) + carry) * (10**tensPlaceCtr)
 
-        print(str(matrix))
+                else:
+
+                    tmpSum = (int(n) * int(n2) + carry)
+
+                    carry = tmpSum // 10
+
+                    print("temp sum: " + str(tmpSum) + " carry: " + str(carry))
+
+                    sum+= tmpSum % 10  * (10**tensPlaceCtr)
+                    tensPlaceCtr+=1
+                    idxCtr+=1
+            print("Sum is "  + str(sum))
+            print("\n\nend\n\n")
 
 
+                
+                ##print("Sum is: " + str(sum))
+            carry = 0
+            idxCtr=1
+            nCtr+=1
+            tensPlaceCtr= 0+nCtr
+
+        return sum
 g = Solution()
 
-print (g.rotate([[5,1,9,11],[2,4,8,10],[13,3,6,7],[15,14,12,16]]))
+print(g.multiply("5678", "1234"))
