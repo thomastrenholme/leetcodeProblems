@@ -8,6 +8,7 @@ def primes(x):
     for i in range(2, x):
 
         if arr[i] == True:
+            print(i)
             
             curr=i**2
             

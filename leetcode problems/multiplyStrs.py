@@ -14,8 +14,6 @@ class Solution:
 
             for n2 in num2[::-1]:
 
-                print("n: " + n + " n2: " + n2)
-
                 if idxCtr==len(num2):
                     sum+= (int(n) * int(n2) + carry) * (10**tensPlaceCtr)
 
@@ -30,18 +28,13 @@ class Solution:
                     sum+= tmpSum % 10  * (10**tensPlaceCtr)
                     tensPlaceCtr+=1
                     idxCtr+=1
-            print("Sum is "  + str(sum))
-            print("\n\nend\n\n")
 
-
-                
-                ##print("Sum is: " + str(sum))
             carry = 0
             idxCtr=1
             nCtr+=1
             tensPlaceCtr= 0+nCtr
 
-        return sum
+        return str(sum)
 g = Solution()
 
 print(g.multiply("5678", "1234"))
