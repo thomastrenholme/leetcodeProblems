@@ -1,23 +1,45 @@
 
 
-class Solution:
+ using System;
 
-    public int poop;
-    public bool pee;
+ class Person
+ {
+     public string name; 
+     public double weight;
+     public int age;
+
+
+     public Person()
+     {
+         name = "Jim Bean";
+         weight = 175.6;
+         age = 25;
+     }
+
+     public Person(name, weight, age)
+     {
+         this.name = name;
+         this.weight = weight;
+         this.age = age;
+     }
+
+     public Person(name, weight=175.6, age=25)
+     {
+         this.name = name;
+         this.weight = weight;
+         this.age = age;
+     }
+ }
 
 
 
 
-    private int bev(n){
-        for( int i = n; i < n+5; i++)
-        {
-            if(i==5)
-            {
-                return i;
-            }
-            else{
+class Poop
+{
 
-                console.log("Poop");
-            }
-        }
+    static void Main(string[] args)
+    {
+
+        Program newProg = new Program();
     }
+}

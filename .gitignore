@@ -1,1 +1,15 @@
-*.ini
+# Ignore everything
+*
+
+# Don't ignore directories, so we can recurse into them
+!*/
+# Don't ignore .gitignore and *.foo files
+!.gitignore
+!*.foo
+!*.cs
+!*.py
+
+
+**/*_tempCodeRunnerFile
+**/*_tempCodeRunnerFile
+**/*_AssemblyAttributes
