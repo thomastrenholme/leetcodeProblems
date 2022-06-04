@@ -17,10 +17,10 @@ class Solution:
                 visited.append(node)
 
                 if not node in graphDict:
-                    circularDependancies[parent]
+                    circularDependanciesDict[parent]= True
 
                 for prereq in graphDict[node]:
                     dfs(parent, prereq, visited=visited+[node])
 
-        return True
+        for x in circularDependanciesDict.values():
 
