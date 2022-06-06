@@ -16,7 +16,33 @@
                 r = midpoint;
             }
         }
-        Console.WriteLine("PivotIdx: " + l);
+        
+        int smallestIdx = l;
+        
+
+        if(target >= nums[smallestIdx] && target <= nums[nums.Length -1]){
+            l = smallestIdx;
+            r = nums.Length -1;
+        }
+        else{
+            l = 0;
+            r = smallestIdx;
+        }
+
+        while(l <= r){
+            int m = l + (r - l)/2;
+
+            if(target > nums[m]){
+                l = m +1;
+            }
+            else if(target < nums[m]){
+                r = m -1;
+            }
+            else{
+                return m;
+            }
+        }
+        return -1;
 
 
     }
