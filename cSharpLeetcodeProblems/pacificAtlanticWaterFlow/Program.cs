@@ -53,7 +53,12 @@ public class Solution {
         foreach(Tuple<int, int> t in atlanticSet){
             Console.WriteLine(t);
         }
-        IEnumerable<Tuple<int, int>> retSet = new IEnumerable<Tuple<int, int>>();
+        IEnumerable<Tuple<int, int>> retSet = new List<Tuple<int, int>>();
+        foreach(Tuple<int, int> t in pacificSet){
+            if(atlanticSet.Contains(t)){
+                retSet.Add(t);
+            }
+        }
         List<int[]> retArr = new List<int[]>();
         foreach(Tuple<int, int> t in retSet){
             retArr.Add(new int[]{t.Item1, t.Item2});
