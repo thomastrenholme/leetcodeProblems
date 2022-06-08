@@ -1,39 +1,52 @@
-from collections import defaultdict
-from email.policy import default
-import string
-from typing import List
+from ast import Str
+import copy
 
 
 class Solution:
-    def pacificAtlantic(self, heights: List[List[int]]) -> List[List[int]]:
+    def rotate(self, matrix: list[list[int]]) -> None:
         
-        rows, cols = len(heights), len(heights[0])
 
-        pacificSet, atlanticSet = set(), set()
+        ##(i, j) is the top (left) point to swap
+        def swap(i, j):
+            nRows = len(matrix)
 
-        def dfs(row, col, visitedSet, prevHeight):
-            ##cant go to this neighbor
-            if( (row, col) in visitedSet or row < 0 or col < 0 or row == rows or col ==cols or heights[row][col] < prevHeight):
-                return
-            visitedSet.add((row, col))
-            dfs(row + 1, col, visitedSet, heights[row][col])
-            dfs(row , col+1, visitedSet, heights[row][col])
-            dfs(row-1, col, visitedSet, heights[row][col])
-            dfs(row, col-1, visitedSet, heights[row][col])
+            top = matrix[i][j] 
+            right = matrix[j][nRows-1-i] 
+            bottom = matrix[nRows-1-i][nRows-1-j] 
+            left = matrix[nRows-1-j][i] 
 
-        for c in range(cols):
+            ##swap top and right
+            matrix[j][nRows-1-i] = top
 
-            dfs(0, c, pacificSet, heights[0][c])
-            dfs(rows-1, c, atlanticSet, heights[rows-1][c])
+            ##swap right and bottom
+            matrix[nRows-1-i][nRows-1-j] = right
 
-        for r in range(rows):
-            dfs(r, 0, pacificSet, heights[r][0])
-            dfs(r, cols-1, atlanticSet, heights[r][cols-1])
-        return list(pacificSet.intersection(atlanticSet))
+            ##swap bottom and left
+            matrix[nRows-1-j][i] = bottom
 
-            
+            ##swap left and top
+            matrix[i][j] = left
 
+        
+        ##Rotate matrix[rowNum] and do it using (swaps) swaps
+        def rotateRow(rowNum, swaps):
+            for i in range(rowNum, swaps-1):
+                swap(rowNum, i)
+            if rowNum <= len(matrix) // 2 -1:
+                rotateRow(rowNum+1, swaps-1)
+
+
+        rotateRow(0, len(matrix))
+
+        for row in matrix:
+            print(row)
+
+        # for row in matrix:
+        #     print(row)
 
 
 g = Solution()
-print(g.pacificAtlantic([[1,2,2,3,5],[3,2,3,4,4],[2,4,5,3,1],[6,7,1,4,5],[5,1,1,2,4]]))
+
+##print(g.rotate([[1,2,3],[4,5,6],[7,8,9]]))
+m = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+print (g.rotate([[1,2,3,4,5],[6,7,8,9,10],[11,12,13,14,15],[16,17,18,19,20],[21,22,23,24,25]]))
