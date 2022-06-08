@@ -12,7 +12,7 @@ class Solution:
 
             middle = l + (r-l)//2
 
-            while l < r:
+            while l <= r:
                 middle = l + (r-l)//2
 
                 if target > arr[middle]:
