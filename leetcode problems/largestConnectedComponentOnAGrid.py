@@ -27,3 +27,4 @@ class Solution:
 g = Solution()
 print(g.findLargestGroupOfColors([ [1,1,1,1,1],[2,2,1,1,2],[3,4,3,4,3] ]))
         
+##https://www.geeksforgeeks.org/largest-connected-component-on-a-grid/
