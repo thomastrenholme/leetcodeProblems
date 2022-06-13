@@ -1,29 +1,31 @@
+##https://leetcode.com/problems/climbing-stairs/
+
+from collections import defaultdict
+from tkinter import NS
+
+
 class Solution:
-    def longestPalindrome(self, s: str) -> int:
-        
+    nStairsToUniqueWays = {}
+    numUniqueWays = 0
+    
+    ##The fibbonacci number of n is made up of (n-2) + (n-1) so that will be the number of ways
+    def fib(self, n):
+        if n<=2:
+            return 1
+        fibCtr=2
 
-        letterDict = {}
+        a=1
+        b=1
+        while fibCtr< n:
+            c=a+b
+            a=b
+            b=c
+            fibCtr+=1
+        return c
 
-        for l in s:
 
-            if l in letterDict:
-                letterDict[l] += 1
-            else:
-                letterDict[l] =1
-
-        longestLen=0
-
-        oneUsed = False
-        for key in letterDict:
-            if letterDict[key]==1 and not oneUsed:
-                oneUsed=True
-                longestLen+=1
-            while letterDict[key] >= 2:
-                letterDict[key]-=2
-                longestLen+=2
-
-        return longestLen
 
 g = Solution()
-print(g.longestPalindrome("abccccdd"))
-        
+
+print(g.fib(20))
+# print(g.climbStairs(3))

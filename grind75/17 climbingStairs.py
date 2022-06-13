@@ -7,26 +7,25 @@ from tkinter import NS
 class Solution:
     nStairsToUniqueWays = {}
     numUniqueWays = 0
-    def climbStairs(self, n: int) -> int:
-        
+    
+    ##The fibbonacci number of n is made up of (n-2) + (n-1) so that will be the number of ways
+    def fib(self, n):
+        if n<=2:
+            return 1
+        fibCtr=2
 
-        def climbDfs(currStep, numStepsToReachTop):
-            if currStep>numStepsToReachTop:
-                return
-                
-            if currStep in self.nStairsToUniqueWays:
-                return self.nStairsToUniqueWays[currStep]
+        a=1
+        b=1
+        while fibCtr< n:
+            c=a+b
+            a=b
+            b=c
+            fibCtr+=1
+        return c
 
-            if currStep==numStepsToReachTop:
-                self.numUniqueWays+=1
-                return
 
-            climbDfs(currStep+1, numStepsToReachTop)
-            climbDfs(currStep+2,  numStepsToReachTop)
-        
-        climbDfs(0, n)
-        return self.numUniqueWays
 
 g = Solution()
 
-print(g.climbStairs(3))
+print(g.fib(20))
+# print(g.climbStairs(3))
