@@ -1,26 +1,29 @@
-# Definition for a binary tree node.
-class TreeNode:
-    def __init__(self, x):
-        self.val = x
-        self.left = None
-        self.right = None
-
-    def __init__(self, x, left=None, right=None):
-        self.val = x
-        self.left = left
-        self.right = right
-
 class Solution:
-    def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
+    def longestPalindrome(self, s: str) -> int:
         
-        
-        if max(q.val, p.val) < root.val:
-            return self.lowestCommonAncestor(root.left, p, q)
-        elif min(q.val, p.val) > root.val:
-            return self.lowestCommonAncestor(root.right, p, q)
-        else:
-            return root
+
+        letterDict = {}
+
+        for l in s:
+
+            if l in letterDict:
+                letterDict[l] += 1
+            else:
+                letterDict[l] =1
+
+        longestLen=0
+
+        oneUsed = False
+        for key in letterDict:
+            if letterDict[key]==1 and not oneUsed:
+                oneUsed=True
+                longestLen+=1
+            while letterDict[key] >= 2:
+                letterDict[key]-=2
+                longestLen+=2
+
+        return longestLen
 
 g = Solution()
-
-print(g.lowestCommonAncestor(root=TreeNode(6, TreeNode(2, TreeNode(0), TreeNode(4, TreeNode(3), TreeNode(5))), TreeNode(8, TreeNode(7), TreeNode(9))), p=TreeNode(2), q=TreeNode(4)))
+print(g.longestPalindrome("abccccdd"))
+        
