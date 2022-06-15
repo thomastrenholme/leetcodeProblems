@@ -29,10 +29,29 @@ class Solution:
 
         print("Found modIdxInterval: " + str(modifyIntervalIdx))
 
+        ##merge int1 and int2. Interval 2 is the interval going to be inserted
+        def mergeIntervals(int1, int2, intervals):
+
+            ##if in range. 
+            if int1[0] <= int2[0] <= int1[1]:
+
+                ##put smallest starting index first
+                if int2[0] < int1[0]:
+                    int1[0] = int2[0]
+
+                    if int2[1] > int1[1]:
+                        int1[]
+                else:
+
+                return True
+            ##else return false
+            return False
+
+
         ##now modify interval or insert 
         if intervals[modifyIntervalIdx][0] > newInterval[0] and intervals[modifyIntervalIdx][1] > newInterval[1]:
             ##just insert
-            intervals = intervals[0:modifyIntervalIdx+1] + newInterval + intervals[modifyIntervalIdx+1:]
+            intervals = intervals[0:modifyIntervalIdx+1] + [newInterval] + intervals[modifyIntervalIdx+1:]
         
         elif intervals[modifyIntervalIdx][0] < newInterval[0]:
 
