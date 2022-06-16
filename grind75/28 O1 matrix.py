@@ -7,7 +7,7 @@ class Solution:
         nRows=len(mat)
         nCols=len(mat[0])
         ##for each cell, if 0, result is 0, else bfs to closest 0
-        res = [ [69]*nCols for i in range(nRows)]
+        res = [ [10000]*nCols for i in range(nRows)]
 
 
         def bfsBinMatrix(i, j, visited):
@@ -17,6 +17,8 @@ class Solution:
             q.append( (i, j, 0) )
             while q:
                 firstNode = q.popleft()
+                if firstNode[2] >= 10000:
+                    return
                 print("checking: " + str(q))
                 visited.add( (firstNode[0], firstNode[1]) )
 
