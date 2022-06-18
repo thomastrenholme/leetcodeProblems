@@ -1,5 +1,5 @@
 from typing import List
-
+##https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/submissions/
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
@@ -9,7 +9,7 @@ class Solution:
         
         while True:
             if numbers[l] + numbers[r] == target:
-                return [numbers[l], numbers[r]]
+                return [l+1, r+1]
             elif numbers[l] + numbers[r] < target:
                 l+=1
             else:
