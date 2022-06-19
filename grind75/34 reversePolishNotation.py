@@ -7,19 +7,17 @@ class Solution:
         
 
         ##go through list of tokens, if no operation between numbers, assume parenthesis
-        ##maybe use stack
-
-        opDict = ["*", "/", "+"]
-        numDict = []
-        ##num num operation
         stack = []
         tokensIdxCtr=0
         ##while still operations or nums
         while tokensIdxCtr<len(tokens):
 
-            while tokens[tokensIdxCtr].lstrip("-").isdigit():
+            while tokensIdxCtr < len(tokens) and tokens[tokensIdxCtr].lstrip("-").isdigit():
                 stack.append(int(tokens[tokensIdxCtr]))
                 tokensIdxCtr+=1
+            
+            if tokensIdxCtr==len(tokens) and len(stack) < 2:
+                break
             ##isnt digit. num1 op num2
             ##is op
             operator = tokens[tokensIdxCtr]
@@ -29,14 +27,14 @@ class Solution:
             newNum=0
             if operator=="+":
                 newNum = num1+num2
+            elif operator=="-":
+                newNum= num1-num2
             elif operator=="*":
                 newNum=num1*num2
             else:
                 newNum=int(num1/num2)
             stack.append(newNum)
-            print("tokens")
-            print(tokens[tokensIdxCtr:])
-            print(stack)
+
         return stack[0]
 
 g = Solution()
