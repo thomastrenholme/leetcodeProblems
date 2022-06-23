@@ -2,7 +2,7 @@ from datetime import datetime
 from matplotlib.pyplot import grid
 
 
-def gridTravel(m, n):
+def gridTravel(m, n): 
     numWays=0
     def dfs(i, j):
         if 0<=i<=m-1 and 0<=j<=n-1:
