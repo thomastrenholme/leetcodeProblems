@@ -1,15 +1,16 @@
 from typing import List
 
+from numpy import sort
+
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         
-
+        intervals.sort(key = lambda x:x[0])
         currInterval = intervals[0]
-        ctr=0
-        firstIIntervals=[]
+        res=[]
 
-        for i, interval in enumerate(intervals[1:]):
+        for interval in intervals[1:]:
 
             ##If intersection
             if interval[0] <= currInterval[1]:
@@ -21,12 +22,12 @@ class Solution:
             ##no intersection
             else:
                 ##Append curr interval
-                firstIIntervals.append(currInterval)
+                res.append(currInterval)
                 ##Update curr to this new disconnected interval
                 currInterval=interval
             
-        firstIIntervals.append(currInterval)
-        return firstIIntervals
+        res.append(currInterval)
+        return res
                 
 
 g = Solution()
