@@ -5,20 +5,20 @@ from typing import List
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         
-        res = [[], nums]
 
-        def getSubsets(arr, subset, index):
-            print("subset: " + str(subset))
-            if len(arr)==0:
-                res.append(subset)
-                return
-            for newElemIdx in range(index, len(arr)):
-                getSubsets(arr[0:newElemIdx] + arr[newElemIdx+1:], subset+[arr[newElemIdx]], newElemIdx)
-        
+        if not nums:
+            return nums
+        res = [[]]
+
+        def dfsSubsets(nums, subset, index):
+            res.append(subset)
+
+            for n in range(index, len(nums)):
+                dfsSubsets(nums, subset+[nums[n]],n+1)
+
         for n in range(len(nums)):
-            getSubsets(nums[0:n] + nums[n+1:], [nums[n]], n)
-        
+            dfsSubsets(nums, [nums[n]], n+1)
         return res
 
 g = Solution()
-print(g.subsets(nums = [1,2,3]))
+print(g.subsets([1,2,3]))

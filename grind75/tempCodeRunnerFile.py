@@ -1,24 +1,50 @@
-from re import sub
-from typing import List
+# Definition for a binary tree node.
+class TreeNode:
+    def __init__(self, val=0, left=None, right=None):
+        self.val = val
+        self.left = left
+        self.right = right
+import sys
+from typing import List, Optional
 
 
 class Solution:
-    def subsets(self, nums: List[int]) -> List[List[int]]:
+    def rightSideView(self, root: Optional[TreeNode]) -> List[int]:
         
-        res = [[], nums]
+        if not root:
+            return root
+        
+        treeDepthToValueVisible={}
+        treeDepthToZIndexShown={}
 
-        def getSubsets(arr, subset, index):
-            print("subset: " + str(subset))
-            if len(arr)==0:
-                res.append(subset)
-                return
-            for newElemIdx in range(index, len(arr)):
-                getSubsets(arr[0:newElemIdx] + arr[newElemIdx+1:], subset+[arr[newElemIdx]], newElemIdx)
-        
-        for n in range(len(nums)):
-            getSubsets(nums[0:n] + nums[n+1:], [nums[n]], n)
-        
-        return res
+        ##Go down left on the rightmost path
 
-g = Solution()
-print(g.subsets(nums = [1,2,3]))
+        ##Go down right on the rightmost path
+
+        ##Show the depth at that height in the array by the highest Z-index of the path traveled (rightmost: sysmax)
+        ##Leftmost: - sysmax
+
+        def traverseDown(currNode, currDepth, zIndex):
+            print("Curr Node: " + str(currNode.val) + " currDepth: " + str(currDepth) + " z: " + str(zIndex))
+
+            ##If already recorded, check if current Z Index is more visible
+            ##If it is, update curr Z index at depth to higher value and update value visible to currNode
+            if currDepth in treeDepthToZIndexShown:
+                if zIndex > treeDepthToZIndexShown[currDepth]:
+                    treeDepthToZIndexShown[currDepth] = zIndex
+                    treeDepthToValueVisible[currDepth] = currNode.val
+            else:
+                treeDepthToZIndexShown[currDepth] = zIndex
+                treeDepthToValueVisible[currDepth] = currNode.val
+            
+            if currNode.left:
+                traverseDown(currNode.left, currDepth +1, zIndex-1)
+            if currNode.right:
+                traverseDown(currNode.right, currDepth+1, zIndex)
+
+        treeDepthToValueVisible[0]=root.val
+        if root.right: traverseDown(root.right, 1, 10**4)
+        if root.left: traverseDown(root.left, 1, -10**4)
+
+        return treeDepthToValueVisible.values()
+
