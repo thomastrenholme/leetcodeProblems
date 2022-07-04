@@ -31,7 +31,7 @@ def queensAttack(n, k, r_q, c_q, obstacles):
     print(nCols)
 
     for ob in obstacles:
-        obDict[(ob[0], ob[1])] = True
+        obDict[(ob[0]-1, ob[1]-1)] = True
     
     def expandInDirection(i, j, dir):
         print("i: " + str(i) + " j: " + str(j) + " dir: " + dir)
