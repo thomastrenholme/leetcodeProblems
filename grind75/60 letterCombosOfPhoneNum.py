@@ -22,7 +22,8 @@ class Solution:
         ctr=1
         while ctr < len(digits):
             currNum = digits[ctr]
-            ##Make a copy of the current res every round, go through all letters of the newly selected current num
+            ##Make a new res var every round that will hold the letter combos of len(ctr), 
+            # go through all letters of the newly selected current num
             ##and append them to all the current combos
             newRes=[]
             for let in myLetterDict[currNum]:
