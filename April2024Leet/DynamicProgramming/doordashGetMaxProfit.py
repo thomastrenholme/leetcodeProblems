@@ -1,4 +1,18 @@
 
+##Problem statement:
+
+## You are a doordash driver atttempting to maximize the profits you can get from deliveries.
+## You have a starting and ending hour of working, and cannot accept a job with a starting hour before your start hour
+# or an ending hour after your ending hour of working.
+
+
+## Some considerations: start_time <= end_time,
+## len(d_starts) == len(d_ends) ==len(d_pays),
+## All d_starts values and all d_ends values and d_pays values are positive integers.
+
+##Fill out this (python3) function that returns the maximum profit you can achieve.
+
+
 ## Time complexity: O(N log N), Space complexity: O(T + N)
 ## Where:
     ## N is the number of deliveries.
